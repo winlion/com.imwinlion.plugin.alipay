@@ -98,13 +98,11 @@ step2:
 	msg:返回的提示信息
 	*/
 	alipay.fail = function(msg){
-		
 		alert(msg);
 	}
 	
 	/*通过jquery.post 请求 json*/
-	
-	
+	var orderno = "这个是订单号";
 	$.post(
 	"api.php",
 	{orderno:orderno},
