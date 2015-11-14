@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+-->
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+      id="com.imwinlion.plugin.alipay"
+      version="0.0.1">
+    <name>Alipay</name>
+    <description>Cordova Alipay Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,alipay</keywords>
+
+    <js-module src="www/alipay.js"><clobbers target="alipay" /></js-module>
+
+    <!-- android -->
+    <platform name="android">
+      <config-file target="res/xml/config.xml" parent="/*">
+        <feature name="Alipay">
+          <param name="android-package" value="com.imwinlion.plugin.alipay.AlipayPlugin" />
+        </feature>
+      </config-file>
+      <config-file target="AndroidManifest.xml" parent="/*">
+			<uses-permission android:name="android.permission.INTERNET" />
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+			<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+      </config-file>
+	   <config-file target="AndroidManifest.xml" parent="/manifest/application">
+	   
+			<activity
+				android:name="com.alipay.sdk.app.H5PayActivity"
+				android:configChanges="orientation|keyboardHidden|navigation"
+				android:exported="false"
+				android:screenOrientation="behind" >
+			</activity>
+			<activity
+						android:name="com.alipay.sdk.auth.AuthActivity"
+						android:configChanges="orientation|keyboardHidden|navigation"
+						android:exported="false"
+						android:screenOrientation="behind" >
+			 </activity>
+	    </config-file>
+      
+      <source-file src="src/android/alipaySdk-20151103.jar" target-dir="libs"/>
+	  <source-file src="src/android/android-support-v13.jar" target-dir="libs"/>
+      <source-file src="src/android/src/PayResult.java" target-dir="src/com/imwinlion/plugin/alipay" />
+      <source-file src="src/android/src/AlipayPlugin.java" target-dir="src/com/imwinlion/plugin/alipay" />
+    </platform>
+</plugin>
